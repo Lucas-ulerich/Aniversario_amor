@@ -6,6 +6,18 @@ body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(to bottom, #ffb3c6 0%, #ffe5ec 25%, #ffe5ec 100%);
     color: #333;
+    overflow-x: hidden;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
 }
 
 button:focus-visible,
@@ -29,6 +41,10 @@ button img:focus-visible {
     font-size: 3rem;
     color: #c9184a;
     margin-bottom: 1rem;
+    min-height: 3.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent;
 }
 
 .audio-custom {

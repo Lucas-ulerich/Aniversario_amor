@@ -1,4 +1,4 @@
-// Script para player de música customizado + elogios animados + modal de imagens
+// Script para player de música customizado + elogios animados + modal de imagens + corações + digitação animada
 
 document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('audio');
@@ -12,10 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Tentar autoplay após um pequeno delay
     setTimeout(playAudio, 500);
 
-    // Garante autoplay em dispositivos móveis após primeira interação
+    // Autoplay garantido na primeira interação + ícone atualizado
     document.body.addEventListener('click', () => {
         if (audio.paused) {
             audio.play().then(() => {
@@ -26,6 +25,53 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(() => {});
         }
     }, { once: true });
+
+    // Animação de digitação do título h1
+    const titulo = document.querySelector('.hero h1');
+    if (titulo) {
+        const texto = titulo.textContent;
+        titulo.textContent = '';
+        let i = 0;
+        const escrever = () => {
+            if (i < texto.length) {
+                titulo.textContent += texto.charAt(i);
+                i++;
+                setTimeout(escrever, 80);
+            }
+        };
+        escrever();
+    }
+
+    // Corações flutuando novamente
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.textContent = '💖';
+        heart.style.position = 'fixed';
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.top = '100vh';
+        heart.style.fontSize = `${Math.random() * 20 + 20}px`;
+        heart.style.animation = 'floatUp 4s linear forwards';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }, 1000);
+
+    // Emojis animados ao rolar até o final do textinho
+    const mensagem = document.querySelector('.mensagem');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const emoji = document.createElement('div');
+                emoji.textContent = '😘🥰💋';
+                emoji.style.fontSize = '2rem';
+                emoji.style.textAlign = 'center';
+                emoji.style.marginTop = '1rem';
+                mensagem.appendChild(emoji);
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.6 });
+
+    if (mensagem) observer.observe(mensagem);
 
     if (botaoAudio) {
         const iconAudio = document.createElement('img');
@@ -87,9 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const botao = document.getElementById('botaoElogio');
-    const mensagem = document.getElementById('mensagemElogio');
+    const mensagemE = document.getElementById('mensagemElogio');
 
-    if (botao && mensagem) {
+    if (botao && mensagemE) {
         botao.textContent = '🎁';
 
         fetch('./assets/elogios.txt')
@@ -99,11 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 botao.addEventListener('click', () => {
                     const texto = elogios[Math.floor(Math.random() * elogios.length)];
-                    mensagem.textContent = texto;
-                    mensagem.classList.add('show');
+                    mensagemE.textContent = texto;
+                    mensagemE.classList.add('show');
                     botao.classList.add('animar');
                     setTimeout(() => botao.classList.remove('animar'), 500);
-                    setTimeout(() => mensagem.classList.remove('show'), 3000);
+                    setTimeout(() => mensagemE.classList.remove('show'), 3000);
 
                     for (let i = 0; i < 20; i++) {
                         const particle = document.createElement('span');

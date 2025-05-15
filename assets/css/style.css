@@ -128,7 +128,14 @@ button img:focus-visible {
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.grid-fotos img.aparecer {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .grid-fotos img:hover {

@@ -1,24 +1,18 @@
-// Script para player de música customizado + elogios animados + modal de imagens + corações + digitação animada
-
 document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('audio');
     const botaoAudio = document.getElementById('audioToggle');
 
-    // Tentativa de autoplay quando o site carregar
     const playAudio = () => {
         audio.volume = 0.6;
-        audio.play().catch(() => {
-            // Se o navegador bloquear o autoplay, espera interação do usuário
-        });
+        audio.play().catch(() => {});
     };
 
     setTimeout(playAudio, 500);
 
-    // Autoplay garantido na primeira interação + ícone atualizado
     document.body.addEventListener('click', () => {
         if (audio.paused) {
             audio.play().then(() => {
-                if (botaoAudio && audio && audio.paused === false) {
+                if (botaoAudio && audio && !audio.paused) {
                     const icon = botaoAudio.querySelector('img');
                     if (icon) icon.src = './assets/img/pause.png';
                 }
@@ -26,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { once: true });
 
-    // Animação de digitação do título h1
+    // Título com digitação
     const titulo = document.querySelector('.hero h1');
     if (titulo) {
         const texto = titulo.textContent;
@@ -36,13 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < texto.length) {
                 titulo.textContent += texto.charAt(i);
                 i++;
-                setTimeout(escrever, 80);
+                setTimeout(escrever, 40);
             }
         };
         escrever();
     }
 
-    // Corações flutuando novamente
+    // Corações flutuantes
     setInterval(() => {
         const heart = document.createElement('div');
         heart.textContent = '💖';
@@ -55,24 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => heart.remove(), 4000);
     }, 1000);
 
-    // Emojis animados ao rolar até o final do textinho
+    // Emojis ao rolar até o textinho
     const mensagem = document.querySelector('.mensagem');
-    const observer = new IntersectionObserver((entries) => {
+    const observerEmoji = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const emoji = document.createElement('div');
-                emoji.textContent = '😘🥰💋';
+                emoji.textContent = '😘🥰😘🥰';
                 emoji.style.fontSize = '2rem';
                 emoji.style.textAlign = 'center';
                 emoji.style.marginTop = '1rem';
                 mensagem.appendChild(emoji);
-                observer.disconnect();
+                setTimeout(() => emoji.remove(), 3000);
             }
         });
     }, { threshold: 0.6 });
 
-    if (mensagem) observer.observe(mensagem);
+    if (mensagem) observerEmoji.observe(mensagem);
 
+    // Player toggle
     if (botaoAudio) {
         const iconAudio = document.createElement('img');
         iconAudio.src = './assets/img/play.png';
@@ -92,18 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Imagens com fade-in ao rolar
     const fotos = document.querySelectorAll('.grid-fotos img');
-    fotos.forEach((img, index) => {
+    const observerImagens = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aparecer');
+                observerImagens.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fotos.forEach(img => {
         img.setAttribute('loading', 'lazy');
-        img.style.opacity = 0;
-        img.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            img.style.transition = 'all 0.6s ease';
-            img.style.opacity = 1;
-            img.style.transform = 'translateY(0)';
-        }, 200 * index);
+        observerImagens.observe(img);
     });
 
+    // Modal galeria
     const modal = document.createElement('div');
     modal.id = 'imageModal';
     modal.style.display = 'none';
@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'flex';
     }
 
+    // Elogios
     const botao = document.getElementById('botaoElogio');
     const mensagemE = document.getElementById('mensagemElogio');
 

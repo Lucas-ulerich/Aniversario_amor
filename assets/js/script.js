@@ -4,6 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('audio');
     const botaoAudio = document.getElementById('audioToggle');
 
+    // Tentativa de autoplay quando o site carregar
+    const playAudio = () => {
+        audio.volume = 0.6;
+        audio.play().catch(() => {
+            // Se o navegador bloquear o autoplay, espera interação do usuário
+        });
+    };
+
+    // Tentar autoplay após um pequeno delay
+    setTimeout(playAudio, 500);
+
+    // Garante autoplay em dispositivos móveis após primeira interação
+    document.body.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().then(() => {
+                if (botaoAudio && audio && audio.paused === false) {
+                    const icon = botaoAudio.querySelector('img');
+                    if (icon) icon.src = './assets/img/pause.png';
+                }
+            }).catch(() => {});
+        }
+    }, { once: true });
+
     if (botaoAudio) {
         const iconAudio = document.createElement('img');
         iconAudio.src = './assets/img/play.png';
@@ -25,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fotos = document.querySelectorAll('.grid-fotos img');
     fotos.forEach((img, index) => {
+        img.setAttribute('loading', 'lazy');
         img.style.opacity = 0;
         img.style.transform = 'translateY(20px)';
         setTimeout(() => {

@@ -8,6 +8,16 @@ body {
     color: #333;
 }
 
+button:focus-visible,
+button:focus,
+button img:focus,
+button img:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
 .hero {
     text-align: center;
     padding: 2rem;

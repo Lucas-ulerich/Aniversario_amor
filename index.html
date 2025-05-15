@@ -1,59 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Aniversário, Meu Amor</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Aniversário</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/img/favicon.png" type="image/png" />
+
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
+
 <header class="hero">
     <h1>Feliz Aniversário, Meu Amor 💖</h1>
+
+    <!-- Player de música -->
     <div class="audio-custom">
-        <button id="audioToggle">▶️</button>
+        <button id="audioToggle">
+            <img src="./assets/img/play.png" alt="Tocar música" />
+        </button>
     </div>
-
-    <audio id="audio" src="assets/music/Jorge%20&%20Mateus%20-%20Logo%20Eu%20%20(Os%20Anjos%20Cantam)%20%5BÁudio%20Oficial%5D.mp3"></audio>
-
+    <audio id="audio" src="./assets/music/Jorge%20&%20Mateus%20-%20Logo%20Eu%20%20(Os%20Anjos%20Cantam)%20%5BÁudio%20Oficial%5D.mp3" preload="auto"></audio>
 </header>
 
 <section class="mensagem">
     <p>
-        Hoje é o seu dia, e meu coração transborda gratidão por poder celebrá-lo ao seu lado.
-        Sua presença é luz que aquece, é riso que contagia, é amor que acalma.
-        Você transforma momentos simples em memórias eternas.
-        Que este site seja só mais uma prova do quanto você é especial! Amo você.💖
+        Hoje é o seu dia, e meu coração transborda gratidão por poder celebrá-lo ao seu lado.<br>
+        Sua presença é luz que aquece, é riso que contagia, é amor que acalma.<br>
+        Você transforma momentos simples em memórias eternas.<br>
+        Que este site seja só mais uma prova do quanto você é especial! Amo você. 💖
     </p>
 </section>
 
 <section class="galeria">
     <h2>Nossas Memórias</h2>
     <div class="grid-fotos">
-        <!-- Imagens aqui -->
-        <img src="./assets/img/20221209_190253.jpg" alt="nós dois">
-        <img src="./assets/img/20221209_190825.jpg" alt="nós dois">
-        <img src="./assets/img/20221209_193802.jpg" alt="nós dois">
-        <img src="./assets/img/20221209_201321.jpg" alt="nós dois">
-        <img src="./assets/img/20230806_171441.jpg" alt="nós dois">
-        <img src="./assets/img/20230908_160558.jpg" alt="nós dois">
-        <img src="./assets/img/20230908_161309.jpg" alt="nós dois">
-        <img src="./assets/img/20230908_162937.jpg" alt="nós dois">
-        <img src="./assets/img/20231231_220501.jpg" alt="nós dois">
-        <img src="./assets/img/20231231_223429.jpg" alt="nós dois">
-        <img src="./assets/img/20240110_091424.jpg" alt="nós dois">
-        <img src="./assets/img/20240113_220628.jpg" alt="nós dois">
-        <!-- Continue com mais -->
+        <!-- Imagens com lazy loading -->
+        <img src="./assets/img/20221209_190253.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20221209_190825.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20221209_193802.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20221209_201321.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20230806_171441.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20230908_160558.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20230908_161309.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20230908_162937.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20231231_220501.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20231231_223429.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20240110_091424.jpg" alt="nós dois" loading="lazy" />
+        <img src="./assets/img/20240113_220628.jpg" alt="nós dois" loading="lazy" />
     </div>
 
+    <!-- Elogios -->
     <div class="elogios">
         <p class="titulo-botao">Clique aqui para ganhar um elogio 💖</p>
-        <button id="botaoElogio">💖</button>
+        <button id="botaoElogio">🎁</button>
         <p id="mensagemElogio"></p>
     </div>
-
-
 </section>
+
+<!-- Curva de fundo inferior -->
 <div class="separador-footer">
     <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
         <path d="M0,80 C480,0 960,160 1440,80 L1440,150 L0,150 Z" fill="#ffb3c6"></path>

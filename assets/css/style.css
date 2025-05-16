@@ -42,10 +42,13 @@ button img:focus-visible {
     color: #c9184a;
     margin-bottom: 1rem;
     min-height: 3.5rem;
-    white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid transparent;
+    word-break: break-word;
+    white-space: normal;
+    text-align: center;
 }
+
 
 .audio-custom {
     display: flex;
